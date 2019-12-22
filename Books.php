@@ -5,11 +5,11 @@ class Books
 {
     public function getBooks()
     {
-        return Db::row('SELECT * FROM books');
+        return Db::getInstance()->query('SELECT * FROM books')->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getBook($id)
     {
-        return Db::row("SELECT * FROM books WHERE id = '" . $id . "'");
+        return Db::getInstance()->query("SELECT * FROM books WHERE id = '" . $id . "'")->fetchAll(PDO::FETCH_ASSOC);
     }
 }

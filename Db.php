@@ -15,7 +15,7 @@ final class Db
             $config['password']);
     }
 
-    static public function getDb(){
+    static public function getInstance(){
         if(empty(self::$db))
         {
             self::$db = new self();
@@ -23,10 +23,10 @@ final class Db
         return self::$db->conn;
     }
 
-    static public function query($sql,
+    public function query($sql,
                           $params = [])
     {
-        $stmt = self::getDb()->prepare($sql);
+        $stmt = self::getInstance()->prepare($sql);
         if (!empty($params)) {
             foreach ($params as $key => $val) {
                 $stmt->bindValue(':' . $key, $val);
@@ -34,19 +34,5 @@ final class Db
         }
         $stmt->execute();
         return $stmt;
-    }
-
-    static public function row($sql,
-                        $params = [])
-    {
-        $result = self::query($sql, $params);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    static public function column($sql,
-                           $params = [])
-    {
-        $result = self::query($sql, $params);
-        return $result->fetchColumn();
     }
 }
