@@ -3,7 +3,7 @@
 final class Db
 {
 
-    static $db;
+    private static $db;
 
     private function __clone(){}
     private function __wakeup(){}
