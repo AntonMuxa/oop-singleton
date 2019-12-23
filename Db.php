@@ -25,5 +25,10 @@ final class Db
 	public function pdoConnection() {
 		return $this->pdo;
 	}
-
+	
+	public function pdoFetchAll($sql) {
+		$stm = $this->pdo->prepare($sql);
+		$stm->execute();
+		return $stm->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
