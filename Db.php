@@ -22,17 +22,4 @@ final class Db
         }
         return self::$db->conn;
     }
-
-    public function query($sql,
-                          $params = [])
-    {
-        $stmt = self::getInstance()->prepare($sql);
-        if (!empty($params)) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
-            }
-        }
-        $stmt->execute();
-        return $stmt;
-    }
 }
