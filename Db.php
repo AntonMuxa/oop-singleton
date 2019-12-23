@@ -3,7 +3,7 @@
 final class Db
 {
 
-    private static $db;
+    private static $instanse;
 
     private function __clone(){}
     private function __wakeup(){}
@@ -11,15 +11,14 @@ final class Db
     private function __construct()
     {
         $config = require 'config.php';
-        $this->conn = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . '', $config['user'],
-            $config['password']);
+        $this->pdo = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . '', $config['user'], $config['password']);
     }
 
     static public function getInstance(){
-        if(empty(self::$db))
+        if(empty(self::$instanse))
         {
-            self::$db = new self();
+            self::$instanse = new self();
         }
-        return self::$db->conn;
+        return self::$instanse->pdo;
     }
 }

@@ -7,4 +7,4 @@ require_once('Books.php');
 $books = new Books();
 echo '<pre>';
 print_r($books->getBooks());
-print_r($books->getBook(3));
+print_r($books->getBook(1));
