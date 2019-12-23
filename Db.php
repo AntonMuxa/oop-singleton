@@ -19,6 +19,11 @@ final class Db
         {
             self::$instanse = new self();
         }
-        return self::$instanse->pdo;
+        return self::$instanse;
     }
+	
+	public function pdoConnection() {
+		return $this->pdo;
+	}
+
 }

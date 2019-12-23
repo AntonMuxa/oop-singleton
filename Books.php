@@ -5,7 +5,7 @@ class Books
 {
     public function getBooks()
     {
-		$pdo = Db::getInstance();
+		$pdo = Db::getInstance()->pdoConnection();
 		$sql = 'SELECT * FROM books';
 		$stm = $pdo->prepare($sql);
 		$stm->execute();
@@ -14,7 +14,7 @@ class Books
 
     public function getBook($id)
     {
-		$pdo = Db::getInstance();
+		$pdo = Db::getInstance()->pdoConnection();
 		$sql = "SELECT * FROM books WHERE id = '" . $id . "'";
 		$stm = $pdo->prepare($sql);
 		$stm->execute();
