@@ -22,10 +22,6 @@ final class Db
         return self::$instanse;
     }
 	
-	public function pdoConnection() {
-		return $this->pdo;
-	}
-	
 	public function pdoFetchAll($sql) {
 		$stm = $this->pdo->prepare($sql);
 		$stm->execute();
